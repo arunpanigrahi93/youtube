@@ -1,11 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../redux/appSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const handleToggle = () => {
+    dispatch(toggleMenu());
+  };
+
   return (
     <div className="grid grid-flow-col items-center p-3 shadow-md">
       {/* Left Section */}
       <div className="flex items-center col-span-2 gap-4">
         <img
+          onClick={() => handleToggle()}
           className="h-6 cursor-pointer"
           src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"
           alt="menu"
