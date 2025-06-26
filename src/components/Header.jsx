@@ -13,7 +13,7 @@ const Header = () => {
         <img
           className="h-8"
           alt="youtube-logo"
-          src="https://1000logos.net/wp-content/uploads/2017/05/Youtube-Logo.png"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI2E5Huc3ioxoXvRVn1phb8yWyk9jOjOWI8Q&s"
         />
       </div>
       {/* session 2 */}
