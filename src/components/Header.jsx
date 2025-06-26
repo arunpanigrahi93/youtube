@@ -2,38 +2,52 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div className="grid grid-flow-col p-5 shadow-lg items-center">
+    <div className="grid grid-flow-col items-center p-3 shadow-md">
       {/* Left Section */}
-      <div className="flex col-span-1 items-center gap-2">
+      <div className="flex items-center col-span-2 gap-4">
         <img
-          className="h-8"
+          className="h-6 cursor-pointer"
+          src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"
           alt="menu"
-          src="https://cdn.iconscout.com/icon/free/png-512/free-hamburger-menu-icon-download-in-svg-png-gif-file-formats--crispy-user-interface-pack-icons-462145.png?f=webp&w=512"
         />
         <img
-          className="h-8"
-          alt="youtube-logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI2E5Huc3ioxoXvRVn1phb8yWyk9jOjOWI8Q&s"
+          className="h-6"
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+          alt="YouTube Logo"
         />
       </div>
 
       {/* Center Section */}
-      <div className="col-span-10 flex justify-center items-center">
-        <input
-          className="w-1/2 border border-gray-400 p-2 px-4 rounded-l-full outline-none"
-          placeholder="Search"
-        />
-        <button className="border border-gray-400 px-5 py-2 rounded-r-full bg-gray-100">
-          🔍
-        </button>
+      <div className="col-span-8 flex justify-center items-center gap-2">
+        <div className="flex w-1/2">
+          <input
+            type="text"
+            className="flex-grow p-2 px-4 border border-gray-400 rounded-l-full outline-none"
+            placeholder="Search"
+          />
+          <button className="px-4 bg-gray-100 border border-gray-400 rounded-r-full">
+            🔍
+          </button>
+        </div>
+        <button className="p-2 rounded-full hover:bg-gray-100">🎤</button>
       </div>
 
       {/* Right Section */}
-      <div className="col-span-1 flex justify-end items-center">
+      <div className="col-span-2 flex justify-end items-center gap-4">
         <img
-          className="h-8"
+          className="h-6 cursor-pointer"
+          src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png"
+          alt="apps"
+        />
+        <img
+          className="h-6 cursor-pointer"
+          src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png"
+          alt="notifications"
+        />
+        <img
+          className="h-8 rounded-full"
+          src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
           alt="user"
-          src="https://icons.veryicon.com/png/o/business/multi-color-financial-and-business-icons/user-139.png"
         />
       </div>
     </div>
