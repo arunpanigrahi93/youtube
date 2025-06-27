@@ -14,7 +14,7 @@ const Header = () => {
       {/* Left Section */}
       <div className="flex items-center col-span-2 gap-4">
         <img
-          onClick={() => handleToggle()}
+          onClick={handleToggle}
           className="h-6 cursor-pointer"
           src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png"
           alt="menu"
