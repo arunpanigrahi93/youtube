@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toggleMenu } from "../redux/appSlice";
-
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 const Header = () => {
+  const [searchQuary, setSearchQuary] = useState("");
+
   const dispatch = useDispatch();
 
   const handleToggle = () => {
     dispatch(toggleMenu());
   };
+
+  const searchApi = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuary);
+    const response = await data.json();
+    console.log(response);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => searchApi(), 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuary]);
 
   return (
     <div className="grid grid-flow-col items-center p-3 shadow-md">
@@ -33,6 +48,7 @@ const Header = () => {
             type="text"
             className="flex-grow p-2 px-4 border border-gray-400 rounded-l-full outline-none"
             placeholder="Search"
+            onChange={(e) => setSearchQuary(e.target.value)}
           />
           <button className="px-4 bg-gray-100 border border-gray-400 rounded-r-full">
             🔍
