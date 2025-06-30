@@ -5,6 +5,7 @@ import { YOUTUBE_SEARCH_API } from "../utils/constants";
 const Header = () => {
   const [searchQuary, setSearchQuary] = useState("");
   const [suggestions, setSuggetstions] = useState([]);
+  const [showSuggestions, setShowSuggetions] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -53,6 +54,8 @@ const Header = () => {
               placeholder="Search"
               onChange={(e) => setSearchQuary(e.target.value)}
               value={searchQuary}
+              onFocus={() => setShowSuggetions(true)}
+              onBlur={() => setShowSuggetions(false)}
             />
             <button className="px-4 bg-gray-100 border border-gray-400 rounded-r-full">
               🔍
@@ -60,16 +63,18 @@ const Header = () => {
           </div>
 
           {/* Suggestions Dropdown */}
-          <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 mt-1 rounded-lg shadow-lg z-50">
-            {suggestions.map((s) => (
-              <li
-                key="{s}"
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-              >
-                {s}
-              </li>
-            ))}
-          </ul>
+          {showSuggestions && (
+            <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 mt-1 rounded-lg shadow-lg z-50">
+              {suggestions.map((s) => (
+                <li
+                  key="{s}"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <button className="p-2 rounded-full hover:bg-gray-100">🎤</button>
