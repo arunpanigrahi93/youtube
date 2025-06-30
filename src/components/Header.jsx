@@ -81,9 +81,9 @@ const Header = () => {
           {/* Suggestions Dropdown */}
           {showSuggestions && (
             <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 mt-1 rounded-lg shadow-lg z-50">
-              {suggestions.map((s) => (
+              {suggestions.map((s, index) => (
                 <li
-                  key="{s}"
+                  key={index}
                   className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                 >
                   {s}
