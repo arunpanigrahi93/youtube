@@ -4,6 +4,7 @@ import { toggleMenu } from "../redux/appSlice";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 const Header = () => {
   const [searchQuary, setSearchQuary] = useState("");
+  const [suggestions, setSuggetstions] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -15,6 +16,7 @@ const Header = () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuary);
     const response = await data.json();
     console.log(response);
+    setSuggetstions(response[1]);
   };
 
   useEffect(() => {
@@ -40,20 +42,36 @@ const Header = () => {
           alt="YouTube Logo"
         />
       </div>
-
       {/* Center Section */}
-      <div className="col-span-8 flex justify-center items-center gap-2">
-        <div className="flex w-1/2">
-          <input
-            type="text"
-            className="flex-grow p-2 px-4 border border-gray-400 rounded-l-full outline-none"
-            placeholder="Search"
-            onChange={(e) => setSearchQuary(e.target.value)}
-          />
-          <button className="px-4 bg-gray-100 border border-gray-400 rounded-r-full">
-            🔍
-          </button>
+      <div className="col-span-8 flex justify-center items-center gap-2 relative">
+        <div className="flex w-1/2 flex-col relative">
+          {/* Input + Search Button */}
+          <div className="flex">
+            <input
+              type="text"
+              className="flex-grow p-2 px-4 border border-gray-400 rounded-l-full outline-none w-full"
+              placeholder="Search"
+              onChange={(e) => setSearchQuary(e.target.value)}
+              value={searchQuary}
+            />
+            <button className="px-4 bg-gray-100 border border-gray-400 rounded-r-full">
+              🔍
+            </button>
+          </div>
+
+          {/* Suggestions Dropdown */}
+          <ul className="absolute top-full left-0 right-0 bg-white border border-gray-300 mt-1 rounded-lg shadow-lg z-50">
+            {suggestions.map((s) => (
+              <li
+                key="{s}"
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              >
+                {s}
+              </li>
+            ))}
+          </ul>
         </div>
+
         <button className="p-2 rounded-full hover:bg-gray-100">🎤</button>
       </div>
 
