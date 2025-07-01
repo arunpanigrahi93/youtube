@@ -12,7 +12,7 @@ const LiveChat = () => {
 
   useEffect(() => {
     const i = setInterval(() => {
-      //   console.log("called");
+      console.log("called");
       dispatch(
         addChat({
           name: GenerateRandomName(),
@@ -31,6 +31,7 @@ const LiveChat = () => {
         message: inputText,
       })
     );
+    setInputText("");
   };
 
   return (
@@ -38,11 +39,7 @@ const LiveChat = () => {
       <div className="w-full h-[580px]  m-5 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse">
         <div>
           {textMessage.map((item, i) => (
-            <ChatMessage
-              key={i}
-              name={GenerateRandomName()}
-              message={item.message}
-            />
+            <ChatMessage key={i} name={item.name} message={item.message} />
           ))}
           {/* <ChatMessage name="arun" message="hello from props" /> */}
         </div>
@@ -57,9 +54,7 @@ const LiveChat = () => {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
         />
-        <button type="button" className="px-2 mx-2 bg-green-100">
-          Send
-        </button>
+        <button className="px-2 mx-2 bg-green-100">Send</button>
       </form>
     </>
   );
