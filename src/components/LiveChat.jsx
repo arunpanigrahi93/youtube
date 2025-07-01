@@ -8,9 +8,11 @@ const LiveChat = () => {
   const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
   const textMessage = useSelector((store) => store.chat.messages);
+  console.log(textMessage);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const i = setInterval(() => {
+      //   console.log("called");
       dispatch(
         addChat({
           name: GenerateRandomName(),
@@ -18,54 +20,44 @@ const LiveChat = () => {
         })
       );
     }, 2000);
+    return () => clearInterval(i);
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [dispatch]);
-
-  const handleSubmit = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-
-    if (!inputText.trim()) return;
-
     dispatch(
       addChat({
-        name: "Arun", // or GenerateRandomName() if you want dynamic
+        name: "arun",
         message: inputText,
       })
     );
-
-    setInputText("");
   };
 
   return (
     <>
-      <div className="w-full h-[580px] m-5 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse">
+      <div className="w-full h-[580px]  m-5 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse">
         <div>
           {textMessage.map((item, i) => (
             <ChatMessage
               key={i}
-              name={item.name} // Use name from state
+              name={GenerateRandomName()}
               message={item.message}
             />
           ))}
+          {/* <ChatMessage name="arun" message="hello from props" /> */}
         </div>
       </div>
-
       <form
-        className="w-full m-5 p-2 border border-black flex"
-        onSubmit={handleSubmit}
+        className="w-full m-5 p-2 border border-black"
+        onSubmit={handleClick}
       >
         <input
-          className="flex-1 px-2 border border-gray-400 rounded"
+          className="w-70"
           type="text"
-          placeholder="Type your message..."
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
         />
-        <button
-          type="submit"
-          className="px-4 mx-2 bg-green-100 rounded hover:bg-green-200"
-        >
+        <button type="button" className="px-2 mx-2 bg-green-100">
           Send
         </button>
       </form>

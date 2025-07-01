@@ -32,7 +32,12 @@ const WatchPage = () => {
           <LiveChat />
         </div>
       </div>
-      <CommentsContainer />
+      <div className="grid grid-cols-12 gap-4">
+        <div className="col-span-9">
+          <CommentsContainer />
+        </div>
+        <div className="col-span-3">{/* Right section content here */}</div>
+      </div>
     </div>
   );
 };
